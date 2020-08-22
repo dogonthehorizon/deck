@@ -18,6 +18,9 @@ import { IKubernetesServerGroupManager } from '../../interfaces';
 import { KubernetesManifestCommandBuilder } from '../../manifest/manifestCommandBuilder.service';
 import { ManifestWizard } from '../../manifest/wizard/ManifestWizard';
 
+import { ScaleServerGroupManager } from './ScaleServerGroupManager';
+import { react2angular } from 'react2angular';
+
 class KubernetesServerGroupManagerDetailsController implements IController {
   public serverGroupManager: IKubernetesServerGroupManager;
   public state = { loading: true };
@@ -184,7 +187,9 @@ class KubernetesServerGroupManagerDetailsController implements IController {
 
 export const KUBERNETES_SERVER_GROUP_MANAGER_DETAILS_CTRL =
   'spinnaker.kubernetes.serverGroupManager.details.controller';
-module(KUBERNETES_SERVER_GROUP_MANAGER_DETAILS_CTRL, []).controller(
-  'kubernetesV2ServerGroupManagerDetailsCtrl',
-  KubernetesServerGroupManagerDetailsController,
-);
+module(KUBERNETES_SERVER_GROUP_MANAGER_DETAILS_CTRL, [])
+  .controller('kubernetesV2ServerGroupManagerDetailsCtrl', KubernetesServerGroupManagerDetailsController)
+  .component(
+    'scaleServerGroupManager',
+    react2angular(ScaleServerGroupManager, ['serverGroupManager', 'app', 'manifest']),
+  );
