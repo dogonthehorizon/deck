@@ -31,7 +31,7 @@ export class ScaleServerGroupManager extends React.Component<IScaleServerGroupMa
           require('../../manifest/scale/scale.html'),
         ),
         controller: this.overrideRegistry.getController('kubernetesV2ManifestScaleCtrl'),
-        controllerAs: 'scaleServerGroupManagerModal',
+        controllerAs: 'ctrl',
         resolve: {
           coordinates: {
             name: this.props.serverGroupManager.name,
@@ -46,6 +46,6 @@ export class ScaleServerGroupManager extends React.Component<IScaleServerGroupMa
   };
 
   public render() {
-    return <a onClick={this.scale}>Scale</a>;
+    return <span onClick={this.scale}>Scale</span>;
   }
 }
